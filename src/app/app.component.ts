@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { EnviarValorService } from './enviar-valor.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'Angular';
+export class AppComponent implements OnInit {
+  mostrarComponentes = true;
+
+  constructor(private service: EnviarValorService) {}
+
+  ngOnInit() {}
+
+  emitirValor(valor: string) {
+    this.service.emitirValor(valor);
+  }
+
+  destruirComponentes() {
+    this.mostrarComponentes = !this.mostrarComponentes;
+  }
 }
